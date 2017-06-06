@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class ItemsController < ProtectedController
-  before_action :set_item, only: [:show, :update, :destroy]
+  # before_action :set_item, only: [:show, :update, :destroy]
+  before_action :set_item, only: [:update, :destroy]
 
   # GET /items
   def index
@@ -17,6 +18,7 @@ class ItemsController < ProtectedController
 
   # GET /items/1
   def show
+    @item = Item.find(params[:id])
     render json: @item
   end
 
@@ -56,6 +58,6 @@ class ItemsController < ProtectedController
 
   # Only allow a trusted parameter "white list" through.
   def item_params
-    params.require(:item).permit(:title, :location, :body, :category, :user_id)
+    params.require(:item).permit(:title, :location, :body, :category_id, :user_id)
   end
 end

@@ -10,5 +10,5 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show]
   resources :items, except: [:new, :edit]
-  resources :categories, except: [:new, :edit]
+  resources :categories, only: [:index, :show, :update]
 end
