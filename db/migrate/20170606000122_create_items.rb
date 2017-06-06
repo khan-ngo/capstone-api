@@ -7,7 +7,6 @@ class CreateItems < ActiveRecord::Migration[5.0]
       t.text :body
       t.string :location
       t.references :user, index: true, foreign_key: true
-      t.references :category, index: true, foreign_key: true
 
       t.timestamps
     end
