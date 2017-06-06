@@ -1,2 +1,3 @@
-class Conversation < ApplicationRecord
+class Conversation <
+   has_many :messages, dependent: :destroy
 end

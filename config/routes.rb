@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 Rails.application.routes.draw do
-  resources :conversations
-  resources :messages
   resources :examples, except: [:new, :edit]
   post '/sign-up' => 'users#signup'
   post '/sign-in' => 'users#signin'
@@ -13,4 +11,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show]
   resources :items, except: [:new, :edit]
   resources :categories, only: [:index, :show, :update]
+  resources :conversations, except: [:new, :edit]
+  resources :messages, except: [:new, :edit]
+
 end
