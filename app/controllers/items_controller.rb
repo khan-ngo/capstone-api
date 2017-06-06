@@ -10,6 +10,11 @@ class ItemsController < ProtectedController
     render json: @items
   end
 
+  def myitems
+    @items = Item.where("user_id=#{current_user.id}")
+    render json: @items
+  end
+
   # GET /items/1
   def show
     render json: @item
