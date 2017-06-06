@@ -10,7 +10,10 @@ class ConversationsController < ApplicationController
 
   # GET /conversations/1
   def show
-    render json: @conversation
+    # render json: @conversation
+    if current_user.id == (@conversation.user1 || @conversation.user2)
+      render json: @conversation
+    end
   end
 
   # POST /conversations
@@ -26,10 +29,12 @@ class ConversationsController < ApplicationController
 
   # PATCH/PUT /conversations/1
   def update
-    if @conversation.update(conversation_params)
-      render json: @conversation
-    else
-      render json: @conversation.errors, status: :unprocessable_entity
+    if current_user.id == (@conversation.owener || @conversation.respondent)
+      if @conversation.update(conversation_params)
+        head :no_content
+      else
+        render json: @conversation.errors, status: :unprocessable_entity
+      end
     end
   end
 
