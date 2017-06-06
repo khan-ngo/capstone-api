@@ -1,7 +1,13 @@
 #!/bin/bash
+# sh scripts/auth/sign-up.sh
 
-API="${API_ORIGIN:-http://localhost:4741}"
+API="http://localhost:4741"
 URL_PATH="/sign-up"
+
+EMAIL="test"
+PASSWORD="test"
+PASSWORD1="test"
+
 curl "${API}${URL_PATH}" \
   --include \
   --request POST \
@@ -10,7 +16,7 @@ curl "${API}${URL_PATH}" \
     "credentials": {
       "email": "'"${EMAIL}"'",
       "password": "'"${PASSWORD}"'",
-      "password_confirmation": "'"${PASSWORD}"'"
+      "password_confirmation": "'"${PASSWORD1}"'"
     }
   }'
 
