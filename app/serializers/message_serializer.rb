@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class MessageSerializer < ActiveModel::Serializer
-  attributes :id, :body, :read, :conversation, :user
+  attributes :id, :body, :read, :conversation, :user, :editable
   has_one :user
 
   def conversation

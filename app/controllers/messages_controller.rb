@@ -1,5 +1,5 @@
-class MessagesController < ApplicationController
-  before_action :set_message, only: [:show, :update, :destroy]
+class MessagesController < ProtectedController
+  # before_action :set_message, only: [:show, :update, :destroy]
 
   # GET /messages
   def index
@@ -10,12 +10,17 @@ class MessagesController < ApplicationController
 
   # GET /messages/1
   def show
-    render json: @message
+    @message = Message.find(params[:id])
+    @conversation = @message.conversation
+    if (current_user.id == @conversation.owner) || (current_user.id == @conversation.respondent)
+      render json: @message
+    end
   end
 
   # POST /messages
   def create
-    @message = Message.new(message_params)
+    # @message = Message.new(message_params)
+    @message = current_user.messages.build(message_params)
 
     if @message.save
       render json: @message, status: :created, location: @message
@@ -34,18 +39,18 @@ class MessagesController < ApplicationController
   end
 
   # DELETE /messages/1
-  def destroy
-    @message.destroy
-  end
+  # def destroy
+  #   @message.destroy
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_message
-      @message = Message.find(params[:id])
-    end
+    # def set_message
+    #   @message = Message.find(params[:id])
+    # end
 
     # Only allow a trusted parameter "white list" through.
     def message_params
-      params.require(:message).permit(:body)
+      params.require(:message).permit(:body, :conversation_id, :user_id, :read)
     end
 end
