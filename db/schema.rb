@@ -22,9 +22,9 @@ ActiveRecord::Schema.define(version: 20170606213739) do
   end
 
   create_table "conversations", force: :cascade do |t|
+    t.integer  "user1"
+    t.integer  "user2"
     t.string   "name"
-    t.integer  "owner"
-    t.integer  "respondent"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -51,10 +51,12 @@ ActiveRecord::Schema.define(version: 20170606213739) do
 
   create_table "messages", force: :cascade do |t|
     t.text     "body"
+    t.integer  "conversation_id"
     t.integer  "user_id"
-    t.boolean  "read",       default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "read",            default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
     t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
 
@@ -71,5 +73,6 @@ ActiveRecord::Schema.define(version: 20170606213739) do
   add_foreign_key "examples", "users"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "users"
+  add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
 end

@@ -1,22 +1,25 @@
-class ConversationsController < ApplicationController
+class ConversationsController < ProtectedController
   before_action :set_conversation, only: [:show, :update, :destroy]
 
   # GET /conversations
+  # GET /conversations.json
   def index
-    @conversations = Conversation.all
+    # @conversations = Conversation.all
+    @conversations = Conversation.where("user1=#{current_user.id} OR user2=#{current_user.id}")
 
     render json: @conversations
   end
 
   # GET /conversations/1
+  # GET /conversations/1.json
   def show
-    # render json: @conversation
     if current_user.id == (@conversation.user1 || @conversation.user2)
       render json: @conversation
     end
   end
 
   # POST /conversations
+  # POST /conversations.json
   def create
     @conversation = Conversation.new(conversation_params)
 
@@ -28,8 +31,9 @@ class ConversationsController < ApplicationController
   end
 
   # PATCH/PUT /conversations/1
+  # PATCH/PUT /conversations/1.json
   def update
-    if current_user.id == (@conversation.owener || @conversation.respondent)
+    if current_user.id == (@conversation.user1 || @conversation.user2)
       if @conversation.update(conversation_params)
         head :no_content
       else
@@ -39,18 +43,20 @@ class ConversationsController < ApplicationController
   end
 
   # DELETE /conversations/1
-  def destroy
-    @conversation.destroy
-  end
+  # DELETE /conversations/1.json
+  # def destroy
+  #   @conversation.destroy
+  #
+  #   head :no_content
+  # end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_conversation
-      @conversation = Conversation.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def conversation_params
-      params.require(:conversation).permit(:name, :owner, :respondent)
-    end
+  def set_conversation
+    @conversation = Conversation.find(params[:id])
+  end
+
+  def conversation_params
+    params.require(:conversation).permit(:user1, :user2, :name)
+  end
 end

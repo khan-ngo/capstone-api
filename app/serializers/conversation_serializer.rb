@@ -1,9 +1,7 @@
-# frozen_string_literal: true
-
 class ConversationSerializer < ActiveModel::Serializer
-  attributes :id, :name, :owner, :respondent, :messages
+  attributes :id, :user1, :user2, :name, :messages
 
   def messages
-    bject.messages.pluck(:id)
+    object.messages.pluck(:id)
   end
 end
