@@ -1,10 +1,8 @@
-# frozen_string_literal: true
-
 class ItemsController < ProtectedController
-  # before_action :set_item, only: [:show, :update, :destroy]
   before_action :set_item, only: [:update, :destroy]
 
   # GET /items
+  # GET /items.json
   def index
     @items = Item.all
 
@@ -22,14 +20,15 @@ class ItemsController < ProtectedController
   end
 
   # GET /items/1
+  # GET /items/1.json
   def show
     @item = Item.find(params[:id])
     render json: @item
   end
 
   # POST /items
+  # POST /items.json
   def create
-    # @item = Item.new(item_params)
     @item = current_user.items.build(item_params)
 
     if @item.save
@@ -40,29 +39,31 @@ class ItemsController < ProtectedController
   end
 
   # PATCH/PUT /items/1
+  # PATCH/PUT /items/1.json
   def update
     if @item.update(item_params)
-      render json: @item
+      head :no_content
     else
       render json: @item.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /items/1
+  # DELETE /items/1.json
   def destroy
     @item.destroy
+
+    head :no_content
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_item
     # @item = Item.find(params[:id])
     @item = current_user.items.find(params[:id])
   end
 
-  # Only allow a trusted parameter "white list" through.
   def item_params
-    params.require(:item).permit(:title, :location, :body, :category_id, :user_id)
+    params.require(:item).permit(:title, :category_id, :location, :body, :address, :user_id)
   end
 end

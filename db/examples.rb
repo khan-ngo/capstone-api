@@ -20,9 +20,66 @@
 
 Item.create([
   {
-    "category_id": 2,
+    "category_id": 1,
+    "user_id": 1,
     "title": 'Whiteboard',
     "body": 'Perfect for whiteboarding!',
     "location": 'Downtown'
+  },
+  {
+    "category_id": 1,
+    "user_id": 1,
+    "title": 'Furr',
+    "body": 'nice condition!',
+    "location": 'Chinatown'
+  },
+  {
+    "category_id": 1,
+    "user_id": 1,
+    "title": 'Tie',
+    "body": 'good condition!',
+    "location": 'BackBay'
+  },
+  {
+    "category_id": 2,
+    "user_id": 1,
+    "title": 'Whiteboard',
+    "body": 'Perfect for whiteboarding!',
+    "location": 'Downtown'
+  },
+  {
+    "category_id": 3,
+    "user_id": 1,
+    "title": 'Furr',
+    "body": 'nice condition!',
+    "location": 'Chinatown'
+  },
+  {
+    "category_id": 2,
+    "user_id": 1,
+    "title": 'Tie',
+    "body": 'good condition!',
+    "location": 'BackBay'
+  },
+  {
+    "category_id": 2,
+    "user_id": 1,
+    "title": 'Whiteboard',
+    "body": 'Perfect for whiteboarding!',
+    "location": 'Downtown'
+  },
+  {
+    "category_id": 3,
+    "user_id": 1,
+    "title": 'Furr',
+    "body": 'nice condition!',
+    "location": 'Chinatown'
+  },
+  {
+    "category_id": 2,
+    "user_id": 1,
+    "title": 'Tie',
+    "body": 'good condition!',
+    "location": 'BackBay'
   }
   ])

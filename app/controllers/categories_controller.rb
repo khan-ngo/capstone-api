@@ -1,9 +1,8 @@
-# frozen_string_literal: true
-
 class CategoriesController < ProtectedController
   # before_action :set_category, only: [:show, :update, :destroy]
 
   # GET /categories
+  # GET /categories.json
   def index
     @categories = Category.all
 
@@ -11,12 +10,15 @@ class CategoriesController < ProtectedController
   end
 
   # GET /categories/1
+  # GET /categories/1.json
   def show
     @category = Category.find(params[:id])
+
     render json: @category
   end
 
   # POST /categories
+  # POST /categories.json
   # def create
   #   @category = Category.new(category_params)
   #
@@ -28,29 +30,31 @@ class CategoriesController < ProtectedController
   # end
 
   # PATCH/PUT /categories/1
+  # PATCH/PUT /categories/1.json
   def update
     @category = Category.find(params[:id])
 
     if @category.update(category_params)
-      render json: @category
+      head :no_content
     else
       render json: @category.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /categories/1
+  # DELETE /categories/1.json
   # def destroy
   #   @category.destroy
+  #
+  #   head :no_content
   # end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_category
     @category = Category.find(params[:id])
   end
 
-  # Only allow a trusted parameter "white list" through.
   def category_params
     params.require(:category).permit(:name)
   end

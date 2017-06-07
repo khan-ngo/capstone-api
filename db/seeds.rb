@@ -10,17 +10,17 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Category.create([
-                  { name: 'Bikes' },
+                  # { name: 'Bikes' },
                   { name: 'Books' },
                   { name: 'Clothes' },
-                  { name: 'Electronics' },
-                  { name: 'Food/Drink' },
-                  { name: 'Furniture' },
+                  # { name: 'Electronics' },
+                  # { name: 'Food/Drink' },
+                  # { name: 'Furniture' },
                   { name: 'Games' },
-                  { name: 'Garden' },
-                  { name: 'Household' },
-                  { name: 'Office' },
-                  { name: 'Sport' },
-                  { name: 'Tools' },
-                  { name: 'Misc.' }
+                  # { name: 'Garden' },
+                  # { name: 'Household' },
+                  # { name: 'Office' },
+                  # { name: 'Sport' },
+                  # { name: 'Tools' },
+                  # { name: 'Misc.' }
                 ])
