@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-class CreateConversations < ActiveRecord::Migration[5.0]
+class CreateConversations < ActiveRecord::Migration
   def change
     create_table :conversations do |t|
+      t.integer :user1
+      t.integer :user2
       t.string :name
-      t.integer :owner
-      t.integer :respondent
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

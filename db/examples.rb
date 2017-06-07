@@ -19,19 +19,10 @@
 # end
 
 Item.create([
-  { "category_id": 1,
-    "title": "Stinky Cheese",
-    "body": "half barrow of stinky cheese",
-    "location": "Harvard Square"
-    },
-  { "category_id": 2,
-    "title": "Charlotte's Web",
-    "body": "Book in good condition and is a good read.",
-    "location": "South Station"
-    },
-  { "category_id": 3,
-    "title": "Men's Tie",
-    "body": "Bright pink to a good home!",
-    "location": "Chinatown"
-    }
+  {
+    "category_id": 2,
+    "title": 'Whiteboard',
+    "body": 'Perfect for whiteboarding!',
+    "location": 'Downtown'
+  }
   ])

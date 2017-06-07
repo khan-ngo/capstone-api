@@ -11,6 +11,11 @@ class ItemsController < ProtectedController
     render json: @items
   end
 
+  def category
+    @items = Item.where('category = ?', params[:category])
+    render json: @items
+  end
+
   def myitems
     @items = Item.where("user_id=#{current_user.id}")
     render json: @items
